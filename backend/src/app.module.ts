@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CasesModule } from './cases/cases.module';
 import config from './config';
 
 @Module({
@@ -20,6 +21,7 @@ import config from './config';
       }),
       inject: [ConfigService],
     }),
+    CasesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
