@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Types } from 'mongoose';
+import { Document, Types } from 'mongoose';
 import { Condition, ConditionSchema } from './condition.schema';
 
 @Schema({ timestamps: true })
@@ -16,5 +16,7 @@ export class Case {
   @Prop({ type: Date, required: false })
   labeledAt?: Date;
 }
+
+export type CaseDocument = Case & Document;
 
 export const CaseSchema = SchemaFactory.createForClass(Case);
