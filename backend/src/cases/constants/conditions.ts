@@ -5,10 +5,6 @@
  */
 export const ICD10_CONDITIONS = [
   {
-    code: 'ICD_10',
-    description: 'ICD_10_Description',
-  },
-  {
     code: 'A09',
     description: 'Infectious gastroenteritis and colitis, unspecified',
   },
