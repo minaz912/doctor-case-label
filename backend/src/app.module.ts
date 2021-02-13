@@ -19,6 +19,7 @@ import config from './config';
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('mongodbUri'),
         useNewUrlParser: true,
+        useCreateIndex: true,
       }),
       inject: [ConfigService],
     }),
