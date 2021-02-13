@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { CasesController } from './cases.controller';
 import { CasesService } from './cases.service';
 import { Case, CaseSchema } from './schemas/case.schema';
 
@@ -12,6 +13,7 @@ import { Case, CaseSchema } from './schemas/case.schema';
       },
     ]),
   ],
+  controllers: [CasesController],
   providers: [CasesService],
 })
 export class CasesModule {}
