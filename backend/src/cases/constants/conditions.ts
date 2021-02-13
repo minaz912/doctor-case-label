@@ -525,3 +525,7 @@ export const ICD10_CONDITIONS = [
       'Sprain of tibiofibular ligament of unspecified ankle, initial encounter',
   },
 ] as const;
+
+export const ICD10_CONDITION_CODES = ICD10_CONDITIONS.map(
+  (condition) => condition.code,
+);
