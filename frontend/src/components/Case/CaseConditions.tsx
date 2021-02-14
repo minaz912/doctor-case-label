@@ -1,8 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 type CaseConditionsProps = {
+  currentCase: Case;
   conditions: Condition[];
-  onSetCondition: (code: string) => void;
+  onSetCondition: (caseId: string, code: string) => void;
+};
+
+export type Case = {
+  _id: string;
+  description: string;
 };
 
 export type Condition = {
@@ -11,6 +17,7 @@ export type Condition = {
 };
 
 export default function CaseConditions({
+  currentCase,
   conditions,
   onSetCondition,
 }: CaseConditionsProps) {
@@ -34,7 +41,9 @@ export default function CaseConditions({
         ))}
       </select>
       <button
-        onClick={() => selectedCode && onSetCondition(selectedCode)}
+        onClick={() =>
+          selectedCode && onSetCondition(currentCase._id, selectedCode)
+        }
         disabled={!selectedCode}
       >
         Submit and get next
