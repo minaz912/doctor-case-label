@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import Login from "./Login/Login";
-import ProfileInfo from "./Login/ProfileInfo";
+import Login from "./Auth/Login";
+import Logout from "./Auth/Logout";
+import ProfileInfo from "./Auth/ProfileInfo";
 
 export default function Navbar() {
-  const [jwt] = useLocalStorage("jwt", null);
+  const [jwt, setJwt] = useLocalStorage("jwt", null);
 
-  return jwt ? <ProfileInfo /> : <Login />;
+  const handleLogout = () => {
+    setJwt(null);
+  };
+
+  return jwt ? (
+    <>
+      <ProfileInfo />
+      <Logout handleLogout={handleLogout} />
+    </>
+  ) : (
+    <Login />
+  );
 }
