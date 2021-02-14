@@ -1,14 +1,14 @@
-import React from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import React, { useContext } from "react";
 import Login from "./Auth/Login";
 import Logout from "./Auth/Logout";
 import ProfileInfo from "./Auth/ProfileInfo";
+import ApplicationContext from "./ApplicationProvider";
 
 export default function Navbar() {
-  const [jwt, setJwt] = useLocalStorage("jwt", null);
+  const { isAuthenticated, onLogout } = useContext(ApplicationContext);
 
   const handleLogout = () => {
-    setJwt(null);
+    onLogout();
   };
 
   return (
@@ -19,7 +19,7 @@ export default function Navbar() {
             <div className="block sm:ml-6">
               <div className="flex">
                 <div className="flex space-x-4 justify-right">
-                  {jwt ? (
+                  {isAuthenticated ? (
                     <>
                       <ProfileInfo />
                       <Logout handleLogout={handleLogout} />

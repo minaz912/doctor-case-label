@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../constants";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import ApplicationContext from "../ApplicationProvider";
 import CaseConditions, { Case, Condition } from "./CaseConditions";
 import CaseDescription from "./CaseDescription";
 
@@ -41,21 +41,21 @@ async function setConditionCode(jwt: string, caseId: string, code: string) {
   return res.json();
 }
 
-export default function CaseLayout() {
+export default function CaseContainer() {
   const [currentCase, setCase] = useState<Case | null>(null);
   const [conditions, setConditions] = useState<Condition[]>([]);
-  const [jwt] = useLocalStorage("jwt", null);
+  const { jwt } = useContext(ApplicationContext);
 
   const onSetCondition = async (caseId: string, code: Condition["code"]) => {
-    await setConditionCode(jwt, caseId, code);
-    const nextCase = await getNextCaseFromApi(jwt);
+    await setConditionCode(jwt as string, caseId, code);
+    const nextCase = await getNextCaseFromApi(jwt as string);
     setCase(nextCase);
   };
 
   useEffect(() => {
     async function getNextUnlabeledCase() {
       try {
-        const nextCase = await getNextCaseFromApi(jwt);
+        const nextCase = await getNextCaseFromApi(jwt as string);
         setCase(nextCase);
       } catch (err) {
         console.error(err);
@@ -64,7 +64,7 @@ export default function CaseLayout() {
 
     async function getConditions() {
       try {
-        const conditions = await getConditionsFromApi(jwt);
+        const conditions = await getConditionsFromApi(jwt as string);
         setConditions(conditions);
       } catch (err) {
         console.error(err);

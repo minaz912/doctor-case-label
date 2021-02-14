@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, useCallback, useContext, useState } from "react";
 import { API_URL } from "../../constants";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import LoginForm from "./LoginForm";
+import ApplicationContext from "../ApplicationProvider";
 
 export default function Login() {
   const [error, setError] = useState<string | null>(null);
@@ -9,7 +10,7 @@ export default function Login() {
     username: "",
     password: "",
   });
-  const [jwt, setJwt] = useLocalStorage("jwt", null);
+  const { isAuthenticated, onLogin } = useContext(ApplicationContext);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
@@ -18,11 +19,6 @@ export default function Login() {
       [id]: value,
     }));
   };
-
-  const onLogin = useCallback((token) => {
-    setJwt(token);
-    setError(null);
-  }, []);
 
   const handleLogin = async () => {
     try {
@@ -35,12 +31,13 @@ export default function Login() {
 
       const { access_token: accessToken } = await res.json();
       onLogin(accessToken);
+      setError(null);
     } catch (err) {
       setError(err);
     }
   };
 
-  return jwt ? (
+  return isAuthenticated ? (
     <div>Logged in</div>
   ) : (
     <LoginForm

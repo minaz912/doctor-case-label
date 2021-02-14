@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../constants";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import ApplicationContext from "../ApplicationProvider";
 
 export default function ProfileInfo() {
   const [name, setName] = useState("");
-  const [jwt] = useLocalStorage("jwt", null);
+  const { jwt } = useContext(ApplicationContext);
 
   useEffect(() => {
     async function getProfileInfo() {
