@@ -34,6 +34,14 @@ export class CasesService {
   }
 
   /**
+   * Returns all possible ICD-10 condition codes and
+   * their description
+   */
+  getConditions(): typeof ICD10_CONDITIONS {
+    return ICD10_CONDITIONS;
+  }
+
+  /**
    * Sets the condition code and description on matching
    * case by id
    * Returns the updated case

@@ -27,6 +27,13 @@ export class CasesController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @Get('conditions')
+  @ApiResponse({ status: 200, description: 'All ICD-10 conditions' })
+  getConditions() {
+    return this.casesService.getConditions();
+  }
+
+  @UseGuards(JwtAuthGuard)
   // This could alternatively be a POST /:caseId/label
   @Put(':caseId')
   async setConditionLabel(

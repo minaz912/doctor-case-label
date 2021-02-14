@@ -3,6 +3,7 @@ import { Request } from 'express';
 import { Types } from 'mongoose';
 import { CasesController } from './cases.controller';
 import { CasesService } from './cases.service';
+import { ICD10_CONDITIONS } from './constants/conditions';
 import { CaseDocument } from './schemas/case.schema';
 
 describe('CasesController', () => {
@@ -16,6 +17,8 @@ describe('CasesController', () => {
         {
           provide: CasesService,
           useValue: {
+            // eslint-disable-next-line @typescript-eslint/no-empty-function
+            getConditions: () => {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
             getNextUnlabeled: () => {},
             // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -44,6 +47,21 @@ describe('CasesController', () => {
 
       const unlabeled = await controller.getNextUnlabeled();
       expect(unlabeled).toBeDefined();
+    });
+  });
+
+  describe('getConditions', () => {
+    it('should return case options', async () => {
+      const conditions = ([
+        {
+          code: 'A09',
+          description: 'Infectious gastroenteritis and colitis, unspecified',
+        },
+      ] as unknown) as typeof ICD10_CONDITIONS;
+      jest.spyOn(service, 'getConditions').mockReturnValue(conditions);
+
+      const unlabeled = await controller.getConditions();
+      expect(unlabeled).toHaveLength(1);
     });
   });
 
