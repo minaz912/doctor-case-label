@@ -14,7 +14,7 @@ export class AuthService {
     email: string,
     pass: string,
   ): Promise<Pick<UserDocument, '_id' | 'firstName' | 'lastName' | 'email'>> {
-    const user = await (await this.usersService.findByEmail(email)).toJSON();
+    const user = (await this.usersService.findByEmail(email))?.toJSON();
     // TODO: save password hashes and compare hashed password instead
     if (user && user.password === pass) {
       const { password, ...result } = user;
