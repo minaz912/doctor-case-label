@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
+import {
+  ICD10_CONDITIONS,
+  ICD10_CONDITION_CODES,
+} from './constants/conditions';
 import { Case, CaseDocument } from './schemas/case.schema';
 
 @Injectable()
@@ -27,5 +31,33 @@ export class CasesService {
       .sort({
         createdAt: 1,
       });
+  }
+
+  /**
+   * Sets the condition code and description on matching
+   * case by id
+   * Returns the updated case
+   */
+  async setConditionLabel(
+    caseId: Types.ObjectId,
+    labeledBy: Types.ObjectId,
+    labelCode: typeof ICD10_CONDITION_CODES[number],
+  ) {
+    const caseForId = await this.getById(caseId);
+    if (!caseForId) {
+      throw new Error('Case not found');
+    }
+
+    const condition = ICD10_CONDITIONS.find(
+      (condition) => condition.code === labelCode,
+    );
+
+    caseForId.set({
+      labeledAt: new Date(),
+      labeledBy,
+      condition,
+    });
+
+    return caseForId.save();
   }
 }
