@@ -11,12 +11,16 @@ export default function Navbar() {
     setJwt(null);
   };
 
-  return jwt ? (
-    <>
-      <ProfileInfo />
-      <Logout handleLogout={handleLogout} />
-    </>
-  ) : (
-    <Login />
+  return (
+    <nav className="">
+      {jwt ? (
+        <>
+          <ProfileInfo />
+          <Logout handleLogout={handleLogout} />
+        </>
+      ) : (
+        <Login />
+      )}
+    </nav>
   );
 }
