@@ -11,6 +11,7 @@ import { join } from 'path';
 
   const parser = parse(data, {
     delimiter: '\t',
+    from: 2,
     columns: ['code', 'description'],
   });
 
