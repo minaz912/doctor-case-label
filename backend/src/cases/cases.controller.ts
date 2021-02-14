@@ -31,12 +31,12 @@ export class CasesController {
   @Put(':caseId')
   async setConditionLabel(
     @Param('caseId', new ParseObjectIdPipe()) caseId: string,
+    @Req() req,
     @Body() conditionLabel: SetConditionLabelDto,
   ) {
     return this.casesService.setConditionLabel(
       Types.ObjectId(caseId),
-      // TODO: get the current user id from token
-      Types.ObjectId(),
+      req.user._id,
       conditionLabel.code as typeof ICD10_CONDITION_CODES[number],
     );
   }
