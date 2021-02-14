@@ -40,24 +40,28 @@ describe('UsersService', () => {
     expect(service).toBeDefined();
   });
 
-  it('[findByEmail]::should do a find operation with correct args', async () => {
-    const email = 'john_doe@example.com';
-    const user = await service.findByEmail(email);
-    expect(UserModel.findOne).toHaveBeenCalledWith({
-      email,
+  describe('findByEmail', () => {
+    it('should do a find operation with correct args', async () => {
+      const email = 'john_doe@example.com';
+      const user = await service.findByEmail(email);
+      expect(UserModel.findOne).toHaveBeenCalledWith({
+        email,
+      });
+      expect(user).toBeDefined();
     });
-    expect(user).toBeDefined();
   });
 
-  it('[create]::should pass input to model', async () => {
-    const input = {
-      email: 'jane_doe@example.com',
-      firstName: 'Jane',
-      lastName: 'Doe',
-      password: 'test',
-    };
-    const created = await service.create(input);
-    expect(UserModel.create).toHaveBeenCalledWith(input);
-    expect(created).toEqual(input);
+  describe('create', () => {
+    it('should pass input to model', async () => {
+      const input = {
+        email: 'jane_doe@example.com',
+        firstName: 'Jane',
+        lastName: 'Doe',
+        password: 'test',
+      };
+      const created = await service.create(input);
+      expect(UserModel.create).toHaveBeenCalledWith(input);
+      expect(created).toEqual(input);
+    });
   });
 });
