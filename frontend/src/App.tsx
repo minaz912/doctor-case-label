@@ -1,24 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import Navbar from "./components/Navbar";
-import CaseContainer from "./components/Case/CaseContainer";
-import ApplicationContext, {
-  AppProvider,
-} from "./components/ApplicationProvider";
+import { AppProvider } from "./components/ApplicationProvider";
+import Layout from "./components/Layout";
 
 function App() {
-  const context = useContext(ApplicationContext);
-
   return (
     <div className="App">
       <AppProvider>
         <Navbar />
-        <div className="pt-16">
-          {context?.isAuthenticated ? (
-            <CaseContainer />
-          ) : (
-            <div>Please log in first</div>
-          )}
-        </div>
+        <Layout />
       </AppProvider>
     </div>
   );
