@@ -75,14 +75,14 @@ export default function CaseLayout() {
   }, []);
 
   return currentCase && conditions.length > 0 ? (
-    <>
+    <div className="flex flex-row w-full flex-wrap">
       <CaseDescription description={currentCase.description} />
       <CaseConditions
         currentCase={currentCase}
         conditions={conditions}
         onSetCondition={onSetCondition}
       />
-    </>
+    </div>
   ) : (
     <div>You are done!</div>
   );

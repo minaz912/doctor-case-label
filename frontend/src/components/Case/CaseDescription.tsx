@@ -4,9 +4,13 @@ type CaseDescriptionProps = {
 
 export default function CaseDescription({ description }: CaseDescriptionProps) {
   return (
-    <div>
-      <h2>Please review this case:</h2>
-      <div>{description}</div>
+    <div className="flex-1 justify-items-center p-10">
+      <h2 className="text-left text-xl font-semibold">
+        Please review this case:
+      </h2>
+      <div className="border-gray-700 border-2 h-auto min-h-full w-full">
+        {description}
+      </div>
     </div>
   );
 }
