@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import Login from "./Auth/Login";
 import Logout from "./Auth/Logout";
