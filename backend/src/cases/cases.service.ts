@@ -12,6 +12,13 @@ export class CasesService {
   constructor(@InjectModel(Case.name) private caseModel: Model<CaseDocument>) {}
 
   /**
+   * Creates a new case
+   */
+  async create(input: Partial<CaseDocument>): Promise<CaseDocument> {
+    return this.caseModel.create(input);
+  }
+
+  /**
    * Finds and returns a case by id, null otherwise
    */
   async getById(caseId: Types.ObjectId): Promise<CaseDocument | null> {
