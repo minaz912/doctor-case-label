@@ -25,7 +25,7 @@ export default function ProfileInfo() {
   }, [jwt]);
 
   return (
-    <div className="text-white text-white px-3 py-2 font-medium">
+    <div className="text-white px-3 py-2 font-medium">
       {`Welcome back, Dr. ${name}`}
     </div>
   );
