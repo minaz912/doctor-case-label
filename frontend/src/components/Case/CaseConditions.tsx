@@ -32,7 +32,7 @@ export default function CaseConditions({
         <h2 className="text-left text-xl font-semibold">Select Condition:</h2>
         <form onSubmit={(ev) => ev.preventDefault()} className="space-y-6">
           <select
-            className="appearance-none outline-none border-gray-700 border-2 w-full max-h-3200"
+            className="appearance-none outline-none border-gray-700 border-2 rounded-md w-full max-h-3200 p-1"
             size={conditions.length}
             value={selectedCode}
             onChange={(ev) => setSelectedCode(ev.target.value)}
