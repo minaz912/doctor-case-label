@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema, Types } from 'mongoose';
-import { User } from 'src/users/schemas/user.schema';
+import { User } from '../../users/schemas/user.schema';
 import { Condition, ConditionSchema } from './condition.schema';
 
 @Schema({ timestamps: true })

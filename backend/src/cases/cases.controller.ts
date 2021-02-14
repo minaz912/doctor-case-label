@@ -9,8 +9,8 @@ import {
 } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
 import { Types } from 'mongoose';
-import { JwtAuthGuard } from 'src/auth/jwtAuth.guard';
-import { ParseObjectIdPipe } from 'src/common/pipes/parseObjectId.pipe';
+import { JwtAuthGuard } from '../auth/jwtAuth.guard';
+import { ParseObjectIdPipe } from '../common/pipes/parseObjectId.pipe';
 import { CasesService } from './cases.service';
 import { ICD10_CONDITION_CODES } from './constants/conditions';
 import { SetConditionLabelDto } from './dtos/setConditionLabel.dto';
