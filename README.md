@@ -1,5 +1,13 @@
 # Doctor Case Labeling
 
+## Technologies/tools used
+
+- [Nest.js](https://nestjs.com) for the backend (API)
+- [MongoDB](https://mongodb.com) as the main (and only) DB
+- [Jest](https://jestjs.io) + [supertest](https://www.npmjs.com/package/supertest) for backend tests
+- [React](https://reactjs.org) (via CRA) for the frontend app
+- [Tailwind CSS](https://tailwindcss.com) for frontend styling
+
 ## Prerequisites for running the app locally
 
 - Unix-like environment (MacOS, Linux, WSL). Windows is **not** supported
